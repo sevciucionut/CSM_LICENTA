@@ -20,10 +20,11 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      // @ts-ignore
+      this.showAdminBoard = this.tokenStorageService.getRoles().includes('ROLE_ADMIN');
+      // @ts-ignore
+      this.showModeratorBoard = this.tokenStorageService.getRoles().includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }
