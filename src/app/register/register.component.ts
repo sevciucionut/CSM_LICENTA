@@ -41,15 +41,4 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  handleFileInput(event) {
-    this.fileToUpload = event.target.files.item(0);
-    this.uploadFileToActivity();
-  }
-
-  uploadFileToActivity() {
-    this.authService.postFile(this.fileToUpload).subscribe(data => {
-    }, error => {
-      console.log(error);
-    });
-  }
 }
