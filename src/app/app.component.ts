@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
 import {Router} from "@angular/router";
 
@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -27,7 +27,7 @@ export class AppComponent {
       // @ts-ignore
       this.showModeratorBoard = this.tokenStorageService.getRoles().includes('ROLE_MODERATOR');
 
-      this.username = user.username;
+      this.username = 'GICA';
     }
   }
 

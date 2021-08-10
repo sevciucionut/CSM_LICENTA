@@ -1,0 +1,8 @@
+.table {
+  margin-top: 20px;
+}
+
+.row-cell:hover {
+  background: lightslategray;
+  cursor: pointer;
+}

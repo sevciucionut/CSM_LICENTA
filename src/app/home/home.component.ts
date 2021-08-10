@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {CourseService} from "../_services/course.service";
+import {Observable} from "rxjs";
+import {CourseListing} from "../models/course-listing.model";
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,25 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     ]),
   ],
 })
-export class HomeComponent {
-  dataSource = ELEMENT_DATA;
+export class HomeComponent implements OnInit {
+
+  dataSource;
   columnsToDisplay = ['position', 'name', 'period', 'capacity', 'country'];
   expandedElement: PeriodicElement | null;
+
+  constructor(
+    private courseService: CourseService
+  ) {
+  }
+
+  ngOnInit() {
+    this.getData();
+  }
+
+
+  private getData() {
+    this.courseService.getAllCourses().subscribe(value => this.dataSource = value);
+  }
 }
 
 export interface PeriodicElement {

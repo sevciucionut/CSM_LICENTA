@@ -104,6 +104,20 @@
           <div *ngIf="university.errors.required">University is required</div>
         </div>
       </div>
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input
+          type="text"
+          class="form-control"
+          name="year"
+          [(ngModel)]="form.year"
+          required
+          #year="ngModel"
+        />
+        <div class="alert-danger" *ngIf="year.errors && f.submitted">
+          <div *ngIf="year.errors.required">Year is required</div>
+        </div>
+      </div>
 
       <div class="form-group">
       <label for="cv">Choose File</label>

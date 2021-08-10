@@ -24,7 +24,7 @@ export class AuthService {
 
   register(fname: string, lname: string, email: string, password: string, phone: string, university: string, year: string, file: File): Observable<any> {
     const formData: FormData = new FormData();
-   
+
     formData.append('cv', file, file.name);
     formData.append('fname',fname)
     formData.append('lname',lname)
@@ -32,7 +32,7 @@ export class AuthService {
     formData.append('password',password)
     formData.append('phone',phone)
     formData.append('university',university)
-    formData.append('year',"3")
+    formData.append('year',year)
 
     return this.http.post('http://localhost:8080/api/student/register', formData);
   }
