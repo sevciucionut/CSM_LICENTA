@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
-  username?: string;
+  user: string
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -20,14 +20,12 @@ export class AppComponent implements OnInit{
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
+      this.user = this.tokenStorageService.getUser();
 
       // @ts-ignore
       this.showAdminBoard = this.tokenStorageService.getRoles().includes('ROLE_ADMIN');
       // @ts-ignore
       this.showModeratorBoard = this.tokenStorageService.getRoles().includes('ROLE_MODERATOR');
-
-      this.username = 'GICA';
     }
   }
 

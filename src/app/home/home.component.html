@@ -12,11 +12,10 @@
       <div class="example-element-detail"
            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
         <div class="example-element-diagram">
-          <img class="img" src="assets/img/img.jpg">
+          <img class="img" src="{{element.imageURL}}">
         </div>
         <div class="example-element-description">
           {{element.description}}
-          <span class="example-element-description-attribution"> -- Wikipedia </span>
           <div class="button-div">
             <button mat-raised-button color="primary" class="enroll-button">Enroll</button>
           </div>
