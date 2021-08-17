@@ -3,6 +3,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CourseService} from "../_services/course.service";
 import {Observable} from "rxjs";
 import {CourseListing} from "../models/course-listing.model";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ import {CourseListing} from "../models/course-listing.model";
 export class HomeComponent implements OnInit {
 
   dataSource;
-  columnsToDisplay = ['id', 'name', 'period', 'capacity', 'country'];
+  columnsToDisplay = ['id', 'name', 'registerPeriod', 'coursePeriod', 'capacity', 'country'];
   expandedElement: PeriodicElement | null;
 
   constructor(
@@ -38,12 +39,17 @@ export class HomeComponent implements OnInit {
       console.log(value[0].imageURL);
     });
   }
+
+  enroll(element) {
+    this.courseService.enroll(element.id).subscribe();
+  }
 }
 
 export interface PeriodicElement {
   name: string;
   id: number;
-  period: string;
+  registerPeriod: string;
+  coursePeriod: string;
   capacity: string;
   description: string;
   country: string;

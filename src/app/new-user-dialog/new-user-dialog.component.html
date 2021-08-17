@@ -1,0 +1,100 @@
+<form
+  name="form"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  #f="ngForm"
+  novalidate
+>
+  <div class="form-group">
+    <label for="fname">First name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="fname"
+      [(ngModel)]="form.fname"
+      required
+      #fname="ngModel"
+    />
+    <div class="alert-danger" *ngIf="fname.errors && f.submitted">
+      <div *ngIf="fname.errors.required">First name is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lname">Last name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="lastname"
+      [(ngModel)]="form.lname"
+      required
+      #lname="ngModel"
+    />
+    <div class="alert-danger" *ngIf="lname.errors && f.submitted">
+      <div *ngIf="lname.errors.required">Last name is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      [(ngModel)]="form.email"
+      required
+      email
+      #email="ngModel"
+    />
+    <div class="alert-danger" *ngIf="email.errors && f.submitted">
+      <div *ngIf="email.errors.required">Email is required</div>
+      <div *ngIf="email.errors.email">
+        Email must be a valid email address
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      [(ngModel)]="form.password"
+      required
+      minlength="6"
+      #password="ngModel"
+    />
+    <div class="alert-danger" *ngIf="password.errors && f.submitted">
+      <div *ngIf="password.errors.required">Password is required</div>
+      <div *ngIf="password.errors.minlength">
+        Password must be at least 6 characters
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input
+      type="text"
+      class="form-control"
+      name="phone"
+      [(ngModel)]="form.phone"
+      required
+      #phone="ngModel"
+    />
+    <div class="alert-danger" *ngIf="phone.errors && f.submitted">
+      <div *ngIf="phone.errors.required">Phone is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      [(ngModel)]="form.title"
+      required
+      #title="ngModel"
+    />
+    <div class="alert-danger" *ngIf="title.errors && f.submitted">
+      <div *ngIf="title.errors.required">Title is required</div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary">Save</button>
+</form>

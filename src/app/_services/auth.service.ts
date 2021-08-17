@@ -41,4 +41,12 @@ export class AuthService {
     return of();
 
   }
+
+  update(email: any, file: File) {
+    const formData: FormData = new FormData();
+
+    formData.append('cv', file, file.name);
+
+    return this.http.put(`http://localhost:8080/api/student/${email}/cv`, formData);
+  }
 }

@@ -6,7 +6,6 @@
       class="profile-img-card"
     />
     <form
-      *ngIf="!isSuccessful"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
       #f="ngForm"
@@ -125,7 +124,9 @@
       <div class="form-group">
         <button class="btn btn-primary btn-block">Save</button>
       </div>
-
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Update successful!
+      </div>
     </form>
   </div>
 </div>

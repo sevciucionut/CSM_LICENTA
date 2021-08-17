@@ -17,6 +17,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material.module";
 import {CourseDetailsComponent} from "./course-details/course-details.component";
+import {NewUserDialogComponent} from "./new-user-dialog/new-user-dialog.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {CourseDetailsComponent} from "./course-details/course-details.component"
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    NewUserDialogComponent
   ],
   imports: [
     BrowserModule,

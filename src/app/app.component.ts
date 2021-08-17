@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   showAdminBoard = false;
   showModeratorBoard = false;
   user: string
+  showStudent: boolean;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -24,6 +25,8 @@ export class AppComponent implements OnInit{
 
       // @ts-ignore
       this.showAdminBoard = this.tokenStorageService.getRoles().includes('ROLE_ADMIN');
+
+      this.showStudent = this.tokenStorageService.getRoles().includes('ROLE_STUDENT');
       // @ts-ignore
       this.showModeratorBoard = this.tokenStorageService.getRoles().includes('ROLE_MODERATOR');
     }

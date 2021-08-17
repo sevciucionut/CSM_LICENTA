@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {CourseService} from "../_services/course.service";
+import {TokenStorageService} from "../_services/token-storage.service";
 
 export interface PeriodicElement {
   name: string;
@@ -7,18 +9,6 @@ export interface PeriodicElement {
   duration: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: '1', name: 'Hydrogen', duration: '1.0079'},
-  {id: '2', name: 'Helium', duration: '4.0026'},
-  {id: '3', name: 'Lithium', duration: '6.941'},
-  {id: '4', name: 'Beryllium', duration: '9.0122'},
-  {id: '5', name: 'Boron', duration: '10.811'},
-  {id: '6', name: 'Carbon', duration: '12.0107'},
-  {id: '7', name: 'Nitrogen', duration: '14.0067'},
-  {id: '8', name: 'Oxygen', duration: '15.9994'},
-  {id: '9', name: 'Fluorine', duration: '18.9984'},
-  {id: '10', name: 'Neon', duration: '20.1797'},
-];
 
 
 @Component({
@@ -26,14 +16,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './board-user.component.html',
   styleUrls: ['./board-user.component.css']
 })
-export class BoardUserComponent {
+export class BoardUserComponent implements OnInit{
   displayedColumns: string[] = ['id', 'name', 'duration'];
-  dataSource = ELEMENT_DATA;
+  dataSource;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private courseService: CourseService, private tokenStorageService: TokenStorageService) {
   }
 
-  goToDetails(event) {
-    this.router.navigate(['/details', event.id]);
+  ngOnInit() {
+    this.courseService.getMyCourses(this.tokenStorageService.getUser()).subscribe(value => this.dataSource = value)
+  }
+
+  goToDetails(element) {
+    this.router.navigate(['/details', element.id]);
   }
 }
