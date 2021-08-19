@@ -20,7 +20,7 @@ import {UserService} from "../_services/user.service";
 export class HomeComponent implements OnInit {
 
   dataSource;
-  columnsToDisplay = ['id', 'name', 'registerPeriod', 'coursePeriod', 'capacity', 'country'];
+  columnsToDisplay = ['id', 'name', 'registerDuration', 'courseDuration', 'capacity', 'country'];
   columnsToDisplayView = ['Id', 'Name', 'Register Period', 'Course Period', 'Capacity', 'Country'];
   expandedElement: PeriodicElement | null;
 
@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
   private getData() {
     this.courseService.getAllCourses().subscribe(value => {
       this.dataSource = value;
-      console.log(value[0].imageURL);
     });
   }
 
@@ -49,8 +48,8 @@ export class HomeComponent implements OnInit {
 export interface PeriodicElement {
   name: string;
   id: number;
-  registerPeriod: string;
-  coursePeriod: string;
+  registerDuration: string;
+  courseDuration: string;
   capacity: string;
   description: string;
   country: string;

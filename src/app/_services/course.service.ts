@@ -35,13 +35,8 @@ export class CourseService {
   addCourse(id: any, name: any, description: any, image: any, country: any, city: any, address: any, capacity: any, durationStart: any, durationEnd: any, registerPeriodStart: any, registerPeriodEnd: any) {
     const formData: FormData = new FormData();
 
-    const courseDuration = {
-      startDate: durationStart,
-      endDate: durationEnd
-    }
     const registerDuration = {
-      startDate: registerPeriodStart,
-      endDate: registerPeriodEnd
+     
     }
 
     formData.append('image', image, image.name);
@@ -52,8 +47,11 @@ export class CourseService {
     formData.append('city', city)
     formData.append('address', address)
     formData.append('capacity', capacity)
-    formData.append('courseDuration', new Blob([JSON.stringify(courseDuration)]))
-    formData.append('registerDuration', new Blob([JSON.stringify(registerDuration)]))
+    formData.append("courseStart",durationStart)
+    formData.append("courseEnd",durationEnd)
+    formData.append("courseRegisterStart",registerPeriodStart)
+    formData.append("courseRegisterEnd",registerPeriodEnd)
+
 
     return this.http.post(`http://localhost:8080/instructor/${this.tokenStorageService.getUser()}/add/course`, formData);
 
