@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   dataSource;
   columnsToDisplay = ['id', 'name', 'registerPeriod', 'coursePeriod', 'capacity', 'country'];
+  columnsToDisplayView = ['Id', 'Name', 'Register Period', 'Course Period', 'Capacity', 'Country'];
   expandedElement: PeriodicElement | null;
 
   constructor(

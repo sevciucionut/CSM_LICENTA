@@ -3,7 +3,16 @@
     <a href="#" class="navbar-brand">CMS</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home" *ngIf="isLoggedIn && showStudent">Home </a>
+        <a href="/home" class="nav-link" routerLink="home" *ngIf="isLoggedIn && (showStudent || isTeacher)">Home </a>
+      </li>
+      <li class="nav-item">
+        <a href="/add" class="nav-link" routerLink="add" *ngIf="isLoggedIn && isTeacher">Add Course </a>
+      </li>
+      <li class="nav-item">
+        <a href="/myCourses" class="nav-link" routerLink="myCourses" *ngIf="isLoggedIn && isTeacher">My Courses </a>
+      </li>
+      <li class="nav-item">
+        <a href="/pending" class="nav-link" routerLink="pending" *ngIf="isLoggedIn && isTeacher">Pending Students </a>
       </li>
       <li class="nav-item" *ngIf="showAdminBoard">
         <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>

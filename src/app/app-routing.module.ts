@@ -9,6 +9,8 @@ import {BoardUserComponent} from './board-user/board-user.component';
 import {BoardModeratorComponent} from './board-moderator/board-moderator.component';
 import {BoardAdminComponent} from './board-admin/board-admin.component';
 import {CourseDetailsComponent} from "./course-details/course-details.component";
+import {AddCourseComponent} from "./add-course/add-course.component";
+import {MyCoursesComponent} from "./my-courses/my-courses.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   },
   {path: 'mod', component: BoardModeratorComponent},
   {path: 'admin', component: BoardAdminComponent},
+  {path: 'add', component: AddCourseComponent},
+  {path: 'myCourses', component: MyCoursesComponent},
   {path: 'details/:id', component: CourseDetailsComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];

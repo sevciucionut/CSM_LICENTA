@@ -31,4 +31,31 @@ export class CourseService {
   getMyCourses(email) {
     return this.http.get(API_URL + `/courses/${email}`);
   }
+
+  addCourse(id: any, name: any, description: any, image: any, country: any, city: any, address: any, capacity: any, durationStart: any, durationEnd: any, registerPeriodStart: any, registerPeriodEnd: any) {
+    const formData: FormData = new FormData();
+
+    const courseDuration = {
+      startDate: durationStart,
+      endDate: durationEnd
+    }
+    const registerDuration = {
+      startDate: registerPeriodStart,
+      endDate: registerPeriodEnd
+    }
+
+    formData.append('image', image, image.name);
+    formData.append('id', id)
+    formData.append('name', name)
+    formData.append('description', description)
+    formData.append('country', country)
+    formData.append('city', city)
+    formData.append('address', address)
+    formData.append('capacity', capacity)
+    formData.append('courseDuration', new Blob([JSON.stringify(courseDuration)]))
+    formData.append('registerDuration', new Blob([JSON.stringify(registerDuration)]))
+
+    return this.http.post(`http://localhost:8080/instructor/${this.tokenStorageService.getUser()}/add/course`, formData);
+
+  }
 }

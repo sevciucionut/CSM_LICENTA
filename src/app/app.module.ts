@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material.module";
 import {CourseDetailsComponent} from "./course-details/course-details.component";
 import {NewUserDialogComponent} from "./new-user-dialog/new-user-dialog.component";
+import {AddCourseComponent} from "./add-course/add-course.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MyCoursesComponent} from "./my-courses/my-courses.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import {NewUserDialogComponent} from "./new-user-dialog/new-user-dialog.componen
     BoardModeratorComponent,
     BoardUserComponent,
     CourseDetailsComponent,
-    NewUserDialogComponent
+    NewUserDialogComponent,
+    AddCourseComponent,
+    MyCoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +44,12 @@ import {NewUserDialogComponent} from "./new-user-dialog/new-user-dialog.componen
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,     MatDatepickerModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
