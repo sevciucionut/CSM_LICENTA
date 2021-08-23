@@ -22,6 +22,8 @@ import {AddCourseComponent} from "./add-course/add-course.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MyCoursesComponent} from "./my-courses/my-courses.component";
+import {AddPostCoursesComponent} from "./add-post-courses/add-post-courses.component";
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {MyCoursesComponent} from "./my-courses/my-courses.component";
     CourseDetailsComponent,
     NewUserDialogComponent,
     AddCourseComponent,
-    MyCoursesComponent
+    MyCoursesComponent,
+    AddPostCoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import {MyCoursesComponent} from "./my-courses/my-courses.component";
     BrowserAnimationsModule,
     MaterialModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [authInterceptorProviders,     MatDatepickerModule,
   ],

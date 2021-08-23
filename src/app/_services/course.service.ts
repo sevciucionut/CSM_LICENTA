@@ -32,11 +32,15 @@ export class CourseService {
     return this.http.get(API_URL + `/courses/${email}`);
   }
 
+  getMyCoursesTeacher(email) {
+    return this.http.get(`http://localhost:8080/instructor/${email}/get/courses`);
+  }
+
   addCourse(id: any, name: any, description: any, image: any, country: any, city: any, address: any, capacity: any, durationStart: any, durationEnd: any, registerPeriodStart: any, registerPeriodEnd: any) {
     const formData: FormData = new FormData();
 
     const registerDuration = {
-     
+
     }
 
     formData.append('image', image, image.name);
@@ -55,5 +59,18 @@ export class CourseService {
 
     return this.http.post(`http://localhost:8080/instructor/${this.tokenStorageService.getUser()}/add/course`, formData);
 
+  }
+
+  activateCourse(id) {
+    return this.http.put(`http://localhost:8080/instructor/activate/course/${id}`, {});
+
+  }
+
+  deactivateCourse(id) {
+    return this.http.put(`http://localhost:8080/instructor/deactivate/course/${id}`, {});
+  }
+
+  addPost(id, result) {
+    return this.http.put(`http://localhost:8080/instructor/course/${id}`, result);
   }
 }
