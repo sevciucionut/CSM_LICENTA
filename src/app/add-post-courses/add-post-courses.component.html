@@ -1,4 +1,5 @@
 <h2 mat-dialog-title>Add Post</h2>
-
-<textarea id="name" type="text" [formControl]="post"></textarea>
-<button mat-raised-button (click)="addPost()">Save</button>
+<div class="dialog">
+  <textarea id="name" type="text" [formControl]="post"></textarea>
+  <button mat-raised-button color="primary" (click)="addPost()">Save</button>
+</div>

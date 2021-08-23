@@ -71,6 +71,18 @@ export class CourseService {
   }
 
   addPost(id, result) {
-    return this.http.put(`http://localhost:8080/instructor/course/${id}`, result);
+    return this.http.put(`http://localhost:8080/instructor/course/${id}/post`, result);
+  }
+
+  getPendingStudents(email) {
+    return this.http.get(`http://localhost:8080/instructor/${email}/course/enrolment`);
+  }
+
+  acceptStudent(courseId, studentEmail) {
+    return this.http.put(`http://localhost:8080/instructor/course/${courseId}/enroll/${studentEmail}`, {});
+  }
+
+  declineStudent(courseId, studentEmail) {
+    return this.http.delete(`http://localhost:8080/instructor/course/${courseId}/enroll/${studentEmail}`, {});
   }
 }

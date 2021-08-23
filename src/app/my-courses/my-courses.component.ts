@@ -44,7 +44,7 @@ export class MyCoursesComponent implements OnInit {
   }
 
   addPost(element) {
-    const dialogRef = this.dialog.open(AddPostCoursesComponent);
+    const dialogRef = this.dialog.open(AddPostCoursesComponent, {width: '512px'});
 
     dialogRef.afterClosed()
       .subscribe(result => {
