@@ -3,13 +3,25 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CourseListing} from "../models/course-listing.model";
 import {TokenStorageService} from "./token-storage.service";
+import { map, filter, switchMap } from 'rxjs/operators';
 
 const API_URL = 'http://localhost:8080/api/student';
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class CourseService {
+  
+  viewCV(studentEmail:String):Observable<any> {
+    return this.http.get(`http://localhost:8080/instructor/student/${studentEmail}/cv`,{responseType: 'text'})
+    
+    
+    
+    // console.log()
+    // window.open("data:application/pdf;base64, " + cv);
+    
+//    return this.http.get(API_URL + '/course/all');
+  }
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) {
   }
 
