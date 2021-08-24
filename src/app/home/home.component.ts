@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CourseService} from "../_services/course.service";
-import {Observable} from "rxjs";
-import {CourseListing} from "../models/course-listing.model";
-import {UserService} from "../_services/user.service";
+import {TokenStorageService} from "../_services/token-storage.service";
 
 @Component({
   selector: 'app-home',
@@ -23,14 +21,17 @@ export class HomeComponent implements OnInit {
   columnsToDisplay = ['id', 'name', 'registerDuration', 'courseDuration', 'capacity', 'country'];
   columnsToDisplayView = ['Id', 'Name', 'Register Period', 'Course Period', 'Capacity', 'Country'];
   expandedElement: PeriodicElement | null;
+  role: string;
 
   constructor(
-    private courseService: CourseService
+    private courseService: CourseService,
+    private tokenStorageService: TokenStorageService
   ) {
   }
 
   ngOnInit() {
     this.getData();
+    this.role = this.tokenStorageService.getRoles();
   }
 
 

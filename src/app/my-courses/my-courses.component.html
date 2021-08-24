@@ -59,8 +59,17 @@
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-raised-button color="accent" (click)="deactivateStudent(element)">Edit</button>
+      <button mat-raised-button color="accent" (click)="edit(element)">Edit</button>
     </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addTimetable">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="accent" type="button" (click)="fileInput.click()">
+        <span>Upload</span>
+        <input #fileInput type="file" (change)="onFileInput(element, $event)" style="display:none;" />
+      </button>    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

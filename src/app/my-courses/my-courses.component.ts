@@ -4,6 +4,7 @@ import {CourseService} from "../_services/course.service";
 import {TokenStorageService} from "../_services/token-storage.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddPostCoursesComponent} from "../add-post-courses/add-post-courses.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-courses',
@@ -13,11 +14,13 @@ import {AddPostCoursesComponent} from "../add-post-courses/add-post-courses.comp
 export class MyCoursesComponent implements OnInit {
 
   dataSource: any;
-  displayedColumns: string[] = ['id', 'name', 'courseDuration', 'registerDuration', 'active', 'activate', 'deactivate', 'viewStudents', 'addPost', 'edit'];
+  displayedColumns: string[] = ['id', 'name', 'courseDuration', 'registerDuration', 'active', 'activate',
+    'deactivate', 'viewStudents', 'addPost', 'edit', 'addTimetable'];
 
   constructor(private courseService: CourseService,
               private tokenStorageService: TokenStorageService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -40,15 +43,23 @@ export class MyCoursesComponent implements OnInit {
   }
 
   viewStudents(element) {
-
+    this.router.navigate(['/viewStudents', element.id])
   }
 
   addPost(element) {
-    const dialogRef = this.dialog.open(AddPostCoursesComponent, {width: '512px'});
+    const dialogRef = this.dialog.open(AddPostCoursesComponent, {width: '512px', data: {title: 'Add Post'}});
 
     dialogRef.afterClosed()
       .subscribe(result => {
-      this.courseService.addPost(element.id, result).subscribe();
-    });
+        this.courseService.addPost(element.id, result).subscribe();
+      });
+  }
+
+  edit(element) {
+    this.router.navigate(['/editCourse', element.id]);
+  }
+
+  onFileInput(element, event) {
+    this.courseService.addTimetable(element.id, event.target.files[0]).subscribe();
   }
 }

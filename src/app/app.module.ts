@@ -25,6 +25,8 @@ import {MyCoursesComponent} from "./my-courses/my-courses.component";
 import {AddPostCoursesComponent} from "./add-post-courses/add-post-courses.component";
 import {MatInputModule} from '@angular/material/input';
 import {PendingStudentsComponent} from "./pending-students/pending-students.component";
+import {EditCourseComponent} from "./edit-course/edit-course.component";
+import {ViewStudentsComponent} from "./view-students/view-students.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import {PendingStudentsComponent} from "./pending-students/pending-students.comp
     AddCourseComponent,
     MyCoursesComponent,
     AddPostCoursesComponent,
-    PendingStudentsComponent
+    PendingStudentsComponent,
+    EditCourseComponent,
+    ViewStudentsComponent
   ],
   imports: [
     BrowserModule,
