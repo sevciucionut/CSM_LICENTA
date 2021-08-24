@@ -75,11 +75,11 @@ export class UserService {
   }
 
   activateCourse(id) {
-    return this.http.put(`http://localhost:8080/admin/deactivate/course/${id}`, {});
+    return this.http.put(`http://localhost:8080/instructor/deactivate/course/${id}`, {});
   }
 
   deactivateCourse(id) {
-    return this.http.put(`http://localhost:8080/admin/deactivate/course/${id}`, {});
+    return this.http.put(`http://localhost:8080/instructor/deactivate/course/${id}`, {});
 
   }
 
