@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {CourseListing} from "../models/course-listing.model";
 import {TokenStorageService} from "./token-storage.service";
 import { map, filter, switchMap } from 'rxjs/operators';
@@ -133,5 +133,15 @@ export class CourseService {
     formData.append('timetable', file, file.name);
 
     return this.http.put(`http://localhost:8080/instructor/course/${id}/timetable`, formData);
+  }
+
+  getCourseDetails(id) {
+    return this.http.get(`http://localhost:8080/api/student/course/${id}`);
+
+  }
+
+  getNotes(id, user) {
+    // return this.http.get(`http://localhost:8080/api/student/course/${id}`);
+    return of(['test', '1']);
   }
 }
