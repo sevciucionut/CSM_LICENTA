@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {MatDialog} from "@angular/material/dialog";
 import {NewUserDialogComponent} from "../new-user-dialog/new-user-dialog.component";
-import {filter} from "rxjs/operators";
+import {filter, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-board-admin',
@@ -31,6 +31,10 @@ export class BoardAdminComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+    this.getAll();
+  }
+
+  private getAll() {
     this.userService.getStudents().subscribe(value => this.dataSourceStudent = value);
     this.userService.getManagers().subscribe(value => this.dataSourceManager = value);
     this.userService.getTeachers().subscribe(value => this.dataSourceTeacher = value);
@@ -75,8 +79,12 @@ export class BoardAdminComponent implements OnInit {
       data: {type: 'manager'}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.userService.addManager(result).subscribe();
+    dialogRef.afterClosed()
+      .pipe(
+        switchMap( result => this.userService.addManager(result))
+      )
+      .subscribe(() => {
+        this.getAll()
     });
   }
 
@@ -86,9 +94,11 @@ export class BoardAdminComponent implements OnInit {
       data: {type: 'teacher'}
     });
 
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        this.userService.addTeacher(result).subscribe();
+    dialogRef.afterClosed().pipe(
+      switchMap(result => this.userService.addTeacher(result))
+    )
+      .subscribe(() => {
+        this.getAll()
       });
   }
 }
