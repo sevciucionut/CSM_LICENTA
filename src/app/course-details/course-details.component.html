@@ -7,6 +7,7 @@
   <mat-card class="descr">
     <div class="status">
       <h1>{{course.name}}</h1>
+      <button mat-raised-button color="accent" (click)="viewTimetable(course.timetable)">View Timetable</button>
       <h3 *ngIf="course.active" class="badge-active">Active</h3>
       <h3 *ngIf="!course.active" class="badge-inactive">Inactive</h3>
     </div>
