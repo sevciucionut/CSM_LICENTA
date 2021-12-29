@@ -1,0 +1,74 @@
+table {
+  width: 100%;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+th {
+  text-align: center;
+}
+
+.img {
+  width: 100%; /*maintain aspect ratio*/
+  height: auto;
+  max-width: 250px;
+}
+
+.enroll-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  height: auto;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.button-div {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.example-element-description {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

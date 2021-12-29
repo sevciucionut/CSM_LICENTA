@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {TokenStorageService} from '../_services/token-storage.service';
+import {Router} from "@angular/router";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -15,42 +17,45 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  email: string[] = [];
   data: any;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
+  constructor(
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+      this.email = this.tokenStorage.getUser();
     }
   }
 
   onSubmit(): void {
     const {username, password} = this.form;
 
-    this.authService.login(username, password).subscribe(
-      data => {
-        this.data = data;
-        this.tokenStorage.saveRoles(data.roles);
-        this.tokenStorage.saveUser(data.email);
-        this.tokenStorage.saveToken(data.token);
+    this.authService.login(username, password)
+      .subscribe(
+        data => {
+          this.data = data;
+          this.tokenStorage.saveRoles(data.roles);
+          this.tokenStorage.saveUser(data.email);
+          this.tokenStorage.saveToken(data.token);
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    );
-  }
-
-  reloadPage(): void {
-    window.location.reload();
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          if (this.tokenStorage.getRoles() === 'ROLE_ADMIN') {
+            this.router.navigate(['/admin']).then(() => window.location.reload());
+          } else {
+            this.router.navigate(['/home']).then(() => window.location.reload());
+          }
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isLoginFailed = true;
+        }
+      );
   }
 }

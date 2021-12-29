@@ -1,0 +1,67 @@
+<div class="card">
+  <mat-card class="image">
+    <div class="example-element-diagram" *ngIf="course">
+      <img class="img" src="data:image/JPEG;base64,{{course.imageURL}}">
+    </div>
+  </mat-card>
+  <mat-card class="descr">
+    <div class="status">
+      <h1>{{course.name}}</h1>
+      <button mat-raised-button color="accent" (click)="viewTimetable(course.timetable)">View Timetable</button>
+      <h3 *ngIf="course.active" class="badge-active">Active</h3>
+      <h3 *ngIf="!course.active" class="badge-inactive">Inactive</h3>
+    </div>
+    <div class="table">
+      <div class="name">Address:</div>
+      <div class="properties">{{course.address}}</div>
+    </div>
+    <div class="table">
+      <div class="name">Capacity:</div>
+      <div class="properties">{{course.capacity}}</div>
+    </div>
+    <div class="table">
+      <div class="name">City:</div>
+      <div class="properties">{{course.city}}</div>
+    </div>
+    <div class="table">
+      <div class="name">Country:</div>
+      <div class="properties">{{course.country}}</div>
+    </div>
+    <div class="table">
+      <div class="name">Duration:</div>
+      <div class="properties">{{course.courseDuration}}</div>
+    </div>
+    <div class="table">
+      <div class="name">Duration:</div>
+      <div class="properties">{{course.registerDuration}}</div>
+    </div>
+    <div>{{course.description}}</div>
+  </mat-card>
+</div>
+
+<div class="titles">
+  <h2>Posts</h2>
+  <h2>Notes</h2>
+</div>
+
+<div class="list">
+  <div class="container-list-post">
+    <ng-container *ngFor="let post of course.post">
+      <mat-card class="post">
+        <div>
+          {{post}}
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+  <div class="container-list-note">
+    <ng-container *ngFor="let note of notes">
+      <mat-card class="note">
+        <div>
+          {{note}}
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
+

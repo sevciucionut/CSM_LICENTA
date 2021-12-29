@@ -1,0 +1,79 @@
+<h1>My courses</h1>
+<table mat-table [dataSource]="dataSource | async" class="mat-elevation-z8 class table my-courses-teacher">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="courseDuration">
+    <th mat-header-cell *matHeaderCellDef> Course Duration </th>
+    <td mat-cell *matCellDef="let element"> {{element.courseDuration}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="registerDuration">
+    <th mat-header-cell *matHeaderCellDef> Register Duration </th>
+    <td mat-cell *matCellDef="let element"> {{element.registerDuration}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="active">
+    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+    <td mat-cell *matCellDef="let element"> {{element.active}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="activate">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="primary" (click)="activateCourse(element)">Activate</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="deactivate">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="warn" (click)="deactivateStudent(element)">Deactivate</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="viewStudents">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="accent" (click)="viewStudents(element)">View Students</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addPost">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="accent" (click)="addPost(element)">Add Post</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="accent" (click)="edit(element)">Edit</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addTimetable">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="accent" type="button" (click)="fileInput.click()">
+        <span>Upload</span>
+        <input #fileInput type="file" (change)="onFileInput(element, $event)" style="display:none;" />
+      </button>    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row class="row-cell"
+      (click)="goToDetails(row)"
+      *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

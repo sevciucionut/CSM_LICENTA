@@ -1,0 +1,15 @@
+.tab ::ng-deep .mat-tab-labels {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+table {
+  width: 100%;
+}
+
+.create-user {
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+}

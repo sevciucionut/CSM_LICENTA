@@ -1,0 +1,85 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+}
+
+.image {
+  width: 30%;
+}
+
+.descr {
+  width: 60%;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge-active {
+  background: green;
+  padding: 5px 20px;
+  border-radius: 25px;
+  color: white;
+}
+.badge-inactive {
+  background: red;
+  padding: 5px 20px;
+  border-radius: 25px;
+  color: white;
+}
+.table {
+  margin: 0;
+  display: flex;
+  width: 100%;
+}
+.name {
+  width: 50%;
+  background: #eaeaea;
+  font-size: 18px;
+  border: #e3e3e3 1px solid;
+}
+.properties {
+  width: 50%;
+  font-size: 16px;
+  border: #e3e3e3 1px solid;
+
+}
+
+.post {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.note {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container-list-post {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.container-list-note {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-between;
+}

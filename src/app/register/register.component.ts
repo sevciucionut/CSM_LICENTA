@@ -7,10 +7,16 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  fileToUpload: File | null = null;
   form: any = {
-    username: null,
+    fname: null,
+    lname: null,
     email: null,
-    password: null
+    password: null,
+    phone: null,
+    university: null,
+    year: null,
+    cv: null
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -22,18 +28,28 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
-
-    this.authService.register(username, email, password).subscribe(
+    let { fname, lname, email, password, phone, university, year, cv } = this.form;
+    cv = this.fileToUpload;
+    this.authService.register(fname, lname, email, password, phone, university, year, cv).subscribe(
       data => {
-        console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.message;
         this.isSignUpFailed = true;
       }
     );
+  }
+  handleFileInput(event) {
+    this.fileToUpload = event.target.files.item(0);
+    this.uploadFileToActivity();
+  }
+
+  uploadFileToActivity() {
+    this.authService.postFile(this.fileToUpload).subscribe(data => {
+    }, error => {
+      console.log(error);
+    });
   }
 }

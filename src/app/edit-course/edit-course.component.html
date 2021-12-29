@@ -1,0 +1,201 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <h1>Edit Course</h1>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="id">Id</label>
+        <input
+          type="text"
+          class="form-control"
+          name="id"
+          [(ngModel)]="form.id"
+          required
+          #id="ngModel"
+          disabled
+        />
+        <div class="alert-danger" *ngIf="id.errors && f.submitted">
+          <div *ngIf="id.errors.required">Id is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          [(ngModel)]="form.name"
+          required
+          #name="ngModel"
+        />
+        <div class="alert-danger" *ngIf="name.errors && f.submitted">
+          <div *ngIf="name.errors.required">Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          [(ngModel)]="form.description"
+          required
+          #description="ngModel"
+        />
+        <div class="alert-danger" *ngIf="description.errors && f.submitted">
+          <div *ngIf="description.errors.required">Description is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          name="country"
+          [(ngModel)]="form.country"
+          required
+          #country="ngModel"
+        />
+        <div class="alert-danger" *ngIf="country.errors && f.submitted">
+          <div *ngIf="country.errors.required">Country is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input
+          type="text"
+          class="form-control"
+          name="city"
+          [(ngModel)]="form.city"
+          required
+          #city="ngModel"
+        />
+        <div class="alert-danger" *ngIf="city.errors && f.submitted">
+          <div *ngIf="city.errors.required">City is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          name="address"
+          [(ngModel)]="form.address"
+          required
+          #address="ngModel"
+        />
+        <div class="alert-danger" *ngIf="address.errors && f.submitted">
+          <div *ngIf="address.errors.required">Address is required</div>
+        </div>
+      </div>
+
+      <div class="date">
+      <div class="form-group">
+        <label for="durationStart">Duration Start</label>
+
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="form.durationStart" required #durationStart="ngModel"
+                 class="form-control" name="durationStart"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="alert-danger" *ngIf="durationStart.errors && f.submitted">
+          <div *ngIf="durationStart.errors.required">Duration Start is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="durationEnd">Duration End</label>
+
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="form.durationEnd" required #durationEnd="ngModel"
+                 class="form-control" name="durationEnd"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <div class="alert-danger" *ngIf="durationEnd.errors && f.submitted">
+          <div *ngIf="durationEnd.errors.required">Duration End is required</div>
+        </div>
+      </div></div>
+
+      <div class="date">
+      <div class="form-group">
+        <label for="registerPeriodStart">Register Period Start</label>
+
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker2" [(ngModel)]="form.registerPeriodStart" required #registerPeriodStart="ngModel"
+                 class="form-control" name="registerPeriodStart"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <div class="alert-danger" *ngIf="registerPeriodStart.errors && f.submitted">
+          <div *ngIf="registerPeriodStart.errors.required">Register Period Start Start is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="registerPeriodEnd">Register Period End</label>
+
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker3" [(ngModel)]="form.registerPeriodEnd" required #registerPeriodEnd="ngModel"
+                 class="form-control" name="registerPeriodEnd"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+        <div class="alert-danger" *ngIf="registerPeriodEnd.errors && f.submitted">
+          <div *ngIf="registerPeriodEnd.errors.required">Register Period End Start is required</div>
+        </div>
+      </div></div>
+
+      <div class="form-group">
+        <label for="capacity">Capacity</label>
+        <input
+          type="text"
+          class="form-control"
+          name="capacity"
+          [(ngModel)]="form.capacity"
+          required
+          #capacity="ngModel"
+        />
+        <div class="alert-danger" *ngIf="capacity.errors && f.submitted">
+          <div *ngIf="capacity.errors.required">Capacity is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Choose Image</label>
+        <input type="file"
+               class="form-control"
+               name="image"
+               id="image"
+               [(ngModel)]="form.image"
+               required
+               (change)="handleFileInput($event)"
+               #image="ngModel">
+        <div class="alert-danger" *ngIf="image.errors && f.submitted">
+          <div *ngIf="image.errors.required">Image is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Edit Course</button>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Course edited successfully!
+    </div>
+  </div>
+</div>

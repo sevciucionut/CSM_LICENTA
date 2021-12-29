@@ -1,26 +1,132 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>
-  <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul>
-</div>
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="fname">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="fname"
+          [(ngModel)]="form.fname"
+          required
+          disabled
+          #fname="ngModel"
+        />
+        <div class="alert-danger" *ngIf="fname.errors && f.submitted">
+          <div *ngIf="fname.errors.required">First name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lname">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="lastname"
+          [(ngModel)]="form.lname"
+          required
+          disabled
+          #lname="ngModel"
+        />
+        <div class="alert-danger" *ngIf="lname.errors && f.submitted">
+          <div *ngIf="lname.errors.required">Last name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          email
+          disabled
+          #email="ngModel"
+        />
+        <div class="alert-danger" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">
+            Email must be a valid email address
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          name="phone"
+          [(ngModel)]="form.phone"
+          required
+          disabled
+          #phone="ngModel"
+        />
+        <div class="alert-danger" *ngIf="phone.errors && f.submitted">
+          <div *ngIf="phone.errors.required">Phone is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="university">University</label>
+        <input
+          type="text"
+          class="form-control"
+          name="university"
+          [(ngModel)]="form.university"
+          required
+          disabled
+          #university="ngModel"
+        />
+        <div class="alert-danger" *ngIf="university.errors && f.submitted">
+          <div *ngIf="university.errors.required">University is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input
+          type="text"
+          class="form-control"
+          name="year"
+          [(ngModel)]="form.year"
+          required
+          disabled
+          #year="ngModel"
+        />
+        <div class="alert-danger" *ngIf="year.errors && f.submitted">
+          <div *ngIf="year.errors.required">Year is required</div>
+        </div>
+      </div>
 
-<ng-template #loggedOut>
-  Please login.
-</ng-template>
+
+      <div class="form-group">
+        <label for="cv">Choose File</label>
+        <input type="file"
+               class="form-control"
+               name="cv"
+               id="file"
+               [(ngModel)]="form.cv"
+               required
+               (change)="handleFileInput($event)"
+               #cv="ngModel">
+        <div class="alert-danger" *ngIf="cv.errors && f.submitted">
+          <div *ngIf="cv.errors.required">University is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Save</button>
+      </div>
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Update successful!
+      </div>
+    </form>
+  </div>
+</div>
